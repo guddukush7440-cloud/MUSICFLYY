@@ -1,3 +1,136 @@
 npm i @capacitor/android
 npx cap add android
 npx cap sync
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MUSICFLYY</title>
+<style>
+:root{--bg:#fff;--bg2:#f2f2f7;--tx:#1c1c1e;--tx2:#8e8e93;--ac:#fa2d48;--bar:rgba(249,249,249,.9);--ln:rgba(60,60,67,.18);--sf:env(safe-area-inset-bottom,0px);--st:env(safe-area-inset-top,0px)}
+:root[data-theme="dark"]{--bg:#000;--bg2:#1c1c1e;--tx:#f5f5f7;--bar:rgba(30,30,30,.9);--ln:rgba(84,84,88,.5)}
+@media(prefers-color-scheme:dark){:root:not([data-theme]){--bg:#000;--bg2:#1c1c1e;--tx:#f5f5f7;--bar:rgba(30,30,30,.9);--ln:rgba(84,84,88,.5)}}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:var(--bg);color:var(--tx);font-family:-apple-system,"SF Pro Text",Roboto,Arial,sans-serif}
+button{font:inherit;color:inherit;background:none;border:0}
+.i{width:24px;height:24px;fill:currentColor;display:block}
+.v{position:fixed;inset:0 0 calc(56px + var(--sf));overflow-y:auto;padding:calc(var(--st) + 14px) 20px 150px;display:none;max-width:520px;margin:0 auto}
+.v.on{display:block}
+h1{font-size:34px;font-weight:800;letter-spacing:-.6px;margin-bottom:14px}
+h2{font-size:20px;font-weight:700;margin:22px 0 10px}
+small{display:block;color:var(--tx2);font-size:13px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.row{display:flex;gap:14px;overflow-x:auto;scrollbar-width:none}
+.cd{flex:0 0 150px;text-align:left}.cd img{width:150px;height:150px;object-fit:cover;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.22)}
+.cd b{display:block;font-size:14px;font-weight:500;margin-top:6px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.r{display:flex;align-items:center;gap:6px;border-bottom:.5px solid var(--ln)}
+.r .m{display:flex;flex:1;gap:12px;align-items:center;text-align:left;min-width:0;padding:8px 0}
+.r img{width:52px;height:52px;object-fit:cover;border-radius:6px;flex:none}
+.r div{min-width:0}.r b{display:block;font-size:16px;font-weight:500;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.ic{color:var(--ac);padding:8px}.ic.g{color:var(--tx2)}
+.in{width:100%;padding:11px 14px;border-radius:12px;border:0;background:var(--bg2);color:var(--tx);font-size:17px;margin-bottom:8px}
+.pill{background:var(--ac);color:#fff;font-weight:700;border-radius:20px;padding:10px 20px}
+.em{text-align:center;color:var(--tx2);padding:60px 10px;line-height:1.5}.em .pill{margin-top:14px}
+.chips{display:flex;gap:8px;overflow-x:auto;margin-bottom:6px;scrollbar-width:none}
+.chip{flex:none;padding:7px 14px;border-radius:16px;background:var(--bg2);font-size:14px;font-weight:600}.chip.on{background:var(--ac);color:#fff}
+.g1{background:var(--bg2);border-radius:12px;margin:8px 0 16px}.g1>div{padding:13px 14px;border-bottom:.5px solid var(--ln)}.g1>div:last-child{border:0}
+.g1 p{font-size:16px}.g1 small{white-space:normal;margin-top:2px}
+.seg{display:flex;gap:6px;margin-top:8px}.seg button{flex:1;padding:8px;border-radius:9px;background:var(--bg);font-weight:600;font-size:14px}.seg .on{background:var(--ac);color:#fff}
+nav{position:fixed;left:0;right:0;bottom:0;height:calc(56px + var(--sf));padding-bottom:var(--sf);background:var(--bar);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-top:.5px solid var(--ln);display:flex;z-index:20}
+nav button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10px;color:var(--tx2)}nav .on{color:var(--ac)}
+#mb{position:fixed;left:8px;right:8px;bottom:calc(62px + var(--sf));height:64px;border-radius:14px;background:var(--bar);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 2px 16px rgba(0,0,0,.22);display:none;align-items:center;padding:0 6px 0 116px;gap:2px;z-index:21}
+#mb .t{flex:1;min-width:0;text-align:left}#mb b{display:block;font-size:15px;font-weight:600;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+#pv{position:fixed;display:none;z-index:40;background:#000;overflow:hidden;left:16px;bottom:calc(67px + var(--sf));width:92px;height:54px;border-radius:7px}
+#pv iframe{width:100%;height:100%;border:0;pointer-events:none}
+body.has #mb,body.has #pv{display:flex}body.has #pv{display:block}
+body.fs #mb{display:none}
+body.fs #pv{left:24px;right:24px;width:auto;height:auto;aspect-ratio:16/9;top:calc(var(--st) + 64px);bottom:auto;border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+body.fs #pv iframe{pointer-events:auto}
+#fs{position:fixed;inset:0;z-index:30;background:var(--bg);padding:calc(var(--st) + 10px) 24px 24px;transform:translateY(100%);transition:transform .3s;display:flex;flex-direction:column}
+body.fs #fs{transform:none}
+.sp{aspect-ratio:16/9;margin:54px 0 22px}
+#ft{font-size:22px;font-weight:700;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}#fa{color:var(--tx2);font-size:17px}
+.bar{height:6px;border-radius:3px;background:var(--bg2);margin:22px 0 6px;position:relative}.bar i{position:absolute;inset:0 auto 0 0;width:0;border-radius:3px;background:var(--tx2)}
+.tm{display:flex;justify-content:space-between;font-size:12px;color:var(--tx2)}
+.ct{display:flex;justify-content:center;align-items:center;gap:40px;margin:14px 0}.ct .i{width:36px;height:36px}.ct .big .i{width:62px;height:62px}
+#toast{position:fixed;left:50%;bottom:calc(140px + var(--sf));transform:translateX(-50%);background:rgba(40,40,40,.92);color:#fff;padding:9px 16px;border-radius:18px;font-size:14px;z-index:60;display:none}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol><symbol id="pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></symbol>
+<symbol id="next" viewBox="0 0 24 24"><path d="M16 6h2v12h-2zM4 6v12l10.5-6z"/></symbol><symbol id="prev" viewBox="0 0 24 24"><path d="M6 6h2v12H6zM20 6v12L9.5 12z"/></symbol>
+<symbol id="search" viewBox="0 0 24 24"><path d="M15.5 14h-.8l-.3-.3A6.5 6.5 0 1 0 14 15.5l.3.3v.8l5 5 1.5-1.5-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></symbol>
+<symbol id="home" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-2 14.5v-9l7 4.5z"/></symbol><symbol id="lib" viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3z"/></symbol>
+<symbol id="gear" viewBox="0 0 24 24"><path d="M19.4 13a7.7 7.7 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7.3 7.3 0 0 0-1.7-1L15 3.3h-4l-.4 2.6a7.3 7.3 0 0 0-1.7 1l-2.5-1-2 3.5L6.6 11a7.7 7.7 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1a7.3 7.3 0 0 0 1.7 1l.4 2.6h4l.4-2.6a7.3 7.3 0 0 0 1.7-1l2.5 1 2-3.5zM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z"/></symbol>
+<symbol id="plus" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></symbol><symbol id="x" viewBox="0 0 24 24"><path d="M19 6.4 17.6 5 12 10.6 6.4 5 5 6.4l5.6 5.6L5 17.6 6.4 19l5.6-5.6 5.6 5.6 1.4-1.4-5.6-5.6z"/></symbol>
+<symbol id="down" viewBox="0 0 24 24"><path d="M7.4 8.6 12 13.2l4.6-4.6L18 10l-6 6-6-6z"/></symbol><symbol id="ok" viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></symbol>
+</defs></svg>
+<section class="v on" id="v0"></section>
+<section class="v" id="v1"><h1>Search</h1><input class="in" id="sq" type="text" placeholder="Songs, artists" autocomplete="off" enterkeyhint="search"><div id="res"></div></section>
+<section class="v" id="v2"></section>
+<section class="v" id="v3"></section>
+<div id="mb"><div class="t" id="mbt"><b id="mt"></b><small id="ma"></small></div>
+<button class="ic" id="mpp" style="color:var(--tx)"><svg class="i"><use href="#play"/></svg></button><button class="ic" id="mnx" style="color:var(--tx)"><svg class="i"><use href="#next"/></svg></button></div>
+<div id="pv"><div id="yt"></div></div>
+<div id="fs"><button class="ic g" id="cl" style="align-self:center"><svg class="i"><use href="#down"/></svg></button><div class="sp"></div>
+<div style="display:flex;align-items:center;gap:10px"><div style="flex:1;min-width:0"><div id="ft"></div><div id="fa"></div></div><button class="ic" id="fadd"><svg class="i"><use href="#plus"/></svg></button></div>
+<div class="bar" id="bar"><i id="pg"></i></div><div class="tm"><span id="tc">0:00</span><span id="td">0:00</span></div>
+<div class="ct"><button id="pr"><svg class="i"><use href="#prev"/></svg></button><button class="big" id="fpp"><svg class="i"><use href="#play"/></svg></button><button id="nx"><svg class="i"><use href="#next"/></svg></button></div></div>
+<nav id="nav"><button class="on" data-tab="0"><svg class="i"><use href="#home"/></svg>Listen Now</button><button data-tab="1"><svg class="i"><use href="#search"/></svg>Search</button><button data-tab="2"><svg class="i"><use href="#lib"/></svg>Library</button><button data-tab="3"><svg class="i"><use href="#gear"/></svg>Settings</button></nav>
+<div id="toast"></div>
+<script>
+const API_KEY="";
+const $=id=>document.getElementById(id);
+let S={PL:[{name:"Library",songs:[]}],ai:0,rec:[],th:"auto",key:""};
+try{const q=JSON.parse(localStorage.getItem("mf3")||localStorage.getItem("mf2")||"null");if(q&&q.PL)S=Object.assign(S,q)}catch(e){}
+const save=()=>{try{localStorage.setItem("mf3",JSON.stringify(S))}catch(e){}};
+const esc=x=>String(x==null?"":x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const dec=h=>{const x=document.createElement("textarea");x.innerHTML=h;return x.value};
+const L=()=>S.PL[S.ai].songs,th=id=>"https://i.ytimg.com/vi/"+id+"/mqdefault.jpg",fmt=s=>Math.floor(s/60)+":"+String(Math.floor(s%60)).padStart(2,"0");
+const ic=(n,c="")=>`<svg class="i ${c}"><use href="#${n}"/></svg>`;
+function toast(m){const t=$("toast");t.textContent=m;t.style.display="block";clearTimeout(toast.k);toast.k=setTimeout(()=>t.style.display="none",1800)}
+function theme(){S.th==="auto"?document.documentElement.removeAttribute("data-theme"):document.documentElement.setAttribute("data-theme",S.th)}theme();
+function rows(list,src,btn){return list.map((s,i)=>`<div class="r"><button class="m" data-q="${src}" data-n="${i}"><img src="${th(s.id)}" alt=""><div><b>${esc(s.t)}</b><small>${esc(s.c||"")}</small></div></button>${btn?`<button class="ic ${btn==="x"?"g":""}" data-${btn==="x"?"d":"a"}="${i}" aria-label="${btn==="x"?"Remove":"Add to library"}">${ic(btn==="x"?"x":"plus")}</button>`:""}</div>`).join("")}
+function home(){const r=S.rec;$("v0").innerHTML="<h1>Listen Now</h1>"+(r.length?`<h2 style="margin-top:0">Recently Played</h2><div class="row">${r.map((s,i)=>`<button class="cd" data-q="rec" data-n="${i}"><img src="${th(s.id)}" alt=""><b>${esc(s.t)}</b><small>${esc(s.c||"")}</small></button>`).join("")}</div>`:`<div class="em"><p>Your music will show up here.<br>Search for a song to start listening.</p><button class="pill" data-tab="1">Search songs</button></div>`)+(L().length?`<h2>${esc(S.PL[S.ai].name)}</h2>`+rows(L(),"lib"):"")}
+function lib(){$("v2").innerHTML=`<h1>Library</h1><div class="chips">${S.PL.map((p,i)=>`<button class="chip${i===S.ai?" on":""}" data-c="${i}">${esc(p.name)}</button>`).join("")}<button class="chip" id="np">+ New</button>${S.PL.length>1?'<button class="chip" id="dp">Delete</button>':""}</div>`+(L().length?rows(L(),"lib","x"):'<div class="em"><p>This playlist is empty.<br>Tap + on any song to add it.</p></div>')}
+function sett(){const k=S.key||API_KEY;$("v3").innerHTML=`<h1>Settings</h1>
+<h2 style="margin-top:0">Appearance</h2><div class="g1"><div><div class="seg">${["auto","light","dark"].map(t=>`<button data-th="${t}" class="${S.th===t?"on":""}">${t[0].toUpperCase()+t.slice(1)}</button>`).join("")}</div></div></div>
+<h2>Audio quality</h2><div class="g1"><div><p>Streaming quality</p><small>Set by YouTube, up to about 256 kbps. It cannot be changed in the app.</small></div><div><p style="color:var(--tx2)">Lossless</p><small>Not available with YouTube. It needs FLAC files or a licensed service.</small></div></div>
+<h2>Search</h2><div class="g1"><div><p>YouTube API key</p><small>${k?"Key saved. Search is on.":"Paste a free key to turn on search."}</small><input class="in" id="kin" type="text" placeholder="Paste API key" autocomplete="off" style="margin:10px 0 8px"><button class="pill" id="ksv">Save key</button></div></div>
+<h2>Data</h2><div class="g1"><div><button id="clr" style="color:var(--ac);font-size:16px">Clear library and history</button></div></div>`}
+function tab(n){document.querySelectorAll(".v").forEach((v,i)=>v.classList.toggle("on",i===n));document.querySelectorAll("nav button").forEach((b,i)=>b.classList.toggle("on",i===n));[home,()=>{},lib,sett][n]();$("v"+n).scrollTop=0}
+let Q=[],qi=0,P=null,ready=false,R=[],cur=null,pend=null;
+function start(list,n){Q=list.slice();qi=n;go()}
+function go(){const s=Q[qi];if(!s)return;cur=s;S.rec=[s].concat(S.rec.filter(x=>x.id!==s.id)).slice(0,12);save();
+ document.body.classList.add("has");$("mt").textContent=$("ft").textContent=s.t;$("ma").textContent=$("fa").textContent=s.c||"";$("pg").style.width="0";$("tc").textContent="0:00";
+ if(ready)P.loadVideoById(s.id);else pend=s.id;if($("v0").classList.contains("on"))home()}
+const step=d=>{if(Q.length){qi=(qi+d+Q.length)%Q.length;go()}};
+function pp(){if(!ready||!cur)return;P.getPlayerState()===1?P.pauseVideo():P.playVideo()}
+function icons(pl){document.querySelectorAll("#mpp use,#fpp use").forEach(u=>u.setAttribute("href",pl?"#pause":"#play"))}
+window.onYouTubeIframeAPIReady=()=>{P=new YT.Player("yt",{width:"100%",height:"100%",playerVars:{playsinline:1,rel:0,controls:0,modestbranding:1,disablekb:1},events:{onReady(){ready=true;if(pend)P.loadVideoById(pend)},onStateChange(e){icons(e.data===1);if(e.data===0)step(1)},onError(){toast("Can't play this song. Skipping.");step(1)}}})};
+setInterval(()=>{if(!ready||!P.getDuration)return;const d=P.getDuration()||0,c=P.getCurrentTime()||0;$("pg").style.width=d?c/d*100+"%":"0";$("tc").textContent=fmt(c);$("td").textContent=fmt(d)},500);
+$("bar").onclick=e=>{if(!ready)return;const r=$("bar").getBoundingClientRect();P.seekTo((e.clientX-r.left)/r.width*(P.getDuration()||0),true)};
+function addSong(s){if(!L().some(x=>x.id===s.id)){L().push({id:s.id,t:s.t,c:s.c||""});save()}toast("Added to "+S.PL[S.ai].name)}
+async function search(){const q=$("sq").value.trim(),k=S.key||API_KEY;if(!q)return;
+ if(!k){$("res").innerHTML='<div class="em"><p>Search needs a free YouTube API key.</p><button class="pill" data-tab="3">Open Settings</button></div>';return}
+ $("res").innerHTML='<p style="color:var(--tx2);padding:14px 0">Searching...</p>';
+ try{const r=await fetch("https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&videoCategoryId=10&videoEmbeddable=true&maxResults=20&q="+encodeURIComponent(q)+"&key="+encodeURIComponent(k)),j=await r.json();
+  if(j.error){const m=j.error.errors&&j.error.errors[0]&&j.error.errors[0].reason;$("res").innerHTML='<div class="em"><p>'+(m==="quotaExceeded"?"Daily search limit reached. Try again tomorrow.":/key|badRequest/i.test(m||"")?"The API key is not valid. Check it in Settings.":"Search failed: "+esc(j.error.message))+'</p></div>';return}
+  R=(j.items||[]).map(x=>({id:x.id.videoId,t:dec(x.snippet.title),c:dec(x.snippet.channelTitle)}));
+  $("res").innerHTML=R.length?rows(R,"res","a"):'<div class="em"><p>No results. Try another search.</p></div>'
+ }catch(e){$("res").innerHTML='<div class="em"><p>No internet connection. Check your network and try again.</p></div>'}}
+$("sq").onkeydown=e=>{if(e.key==="Enter"){e.target.blur();search()}};
+document.addEventListener("click",e=>{const g=s=>e.target.closest(s);let t;
+ if(t=g("[data-tab]"))return tab(+t.dataset.tab);
+ if(t=g("[data-n]")){const s=t.dataset.q;return start(s==="rec"?S.rec:s==="res"?R:L(),+t.dataset.n)}
+ if(t=g("[data-a]")){addSong(R[+t.dataset.a]);t.innerHTML=ic("ok");return}
+ if(t=g("[data-d]")){L().splice(+t.dataset.d,1);save();return lib()}
+ if(t=g("[data-c]")){S.ai=+t.dataset.c;save();return lib()}
+ if(t=g("[data-th]")){S.th=t.dataset.th;save();theme();return sett()}
+ if(g("#np")){const n=(prompt("Playlist name")||"").trim();if(n){S.PL.push({name:n.slice(0,30),songs:[]});S.ai=S.PL.length-1;save();lib()}return}
+ if(g("#dp")){if(confirm("Delete playlist "+S.PL[S.ai].name+"?")){S.PL.splice(S.ai,1);S.ai=0;save();lib()}return}
+ if(g("#ksv")){const k=$("kin").value.trim();if(k.length>20){S.key=k;save();toast("Key saved");sett()}else toast("That key looks too short");return}
+ if(g("#clr")){if(confirm("Remove all playlists, songs and history?")){S.PL=[{name:"Library",songs:[]}];S.ai=0;S.rec=[];save();toast("Cleared");sett()}return}
+ if(g("#fadd")){if(cur)addSong(cur);return}
+ if(g("#mpp")||g("#fpp"))return pp();if(g("#mnx")||g("#nx"))return step(1);if(g("#pr"))return step(-1);
+ if(g("#cl"))return document.body.classList.remove("fs");
+ if(g("#mb")||(g("#pv")&&!document.body.classList.contains("fs")))document.body.classList.add("fs")});
+home();
+</script><script src="https://www.youtube.com/iframe_api"></script></body></html>
+                                                                                                                               
